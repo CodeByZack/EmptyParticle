@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>粒子系统演示</title>
+    <script src="./src/particles.js"></script>
+    <style>
+        #warpper{
+            border: 1px solid #113344;
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+        }
+        #canvas{
+            width: 800px;
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+    <h2>粒子系统测试</h2>
+    <div id="warpper">
+        <canvas id="canvas">
+
+        </canvas>
+    </div>
+    <script>
+        let canvas = document.getElementById('canvas');
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientWidth;
+
+
+        let ctx = canvas.getContext('2d');
+        let w = canvas.width;
+        let h = canvas.height;
+
+        let render = new EPS.render(canvas);
+
+        let option = {
+            EmmitterArea:{
+                x0 : w/2,
+                y0 : h/2,
+                x1 : w/2,
+                y1 : h/2
+            },
+            MaxArea:{
+                x0 : 0,
+                y0 : 0,
+                x1 : w,
+                y1 : h
+            }
+        }
+        let factory = new EPS.factory(option);
+        
+        EPS.addFactory(factory);
+        EPS.setRender(render);
+
+        EPS.loop();
+
+    </script>
+</body>
+</html>
